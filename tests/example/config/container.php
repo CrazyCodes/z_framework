@@ -1,9 +1,8 @@
 <?php
     // +----------------------------------------------------------------------
-    // | z-framework
-    // | is program start bootstrap
+    // | Z Framework [ The Fast Php Framework ]
     // +----------------------------------------------------------------------
-    // | Copyright (c) 2016~2018 http://zframework.fastrun.cn All rights reserved.
+    // | Copyright (c) 2016~2018 http://z_framework.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
     // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
     // +----------------------------------------------------------------------
@@ -11,15 +10,7 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    
-    namespace Zero;
-    
-    use Zero\Config\Load;
-    
-    class Bootstrap
-    {
-        public function run($config)
-        {
-            return true;
-        }
-    }
+    return [
+        "ControllerNamespace" => "Zero\\Tests\\Example\\App\\Controllers\\",
+        "ModelNamespace"      => "Zero\\Tests\\Example\\App\\Model\\",
+    ];

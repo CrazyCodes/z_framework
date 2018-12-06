@@ -1,9 +1,8 @@
 <?php
     // +----------------------------------------------------------------------
-    // | z-framework
-    // | is program start bootstrap
+    // | Z Framework [ The Fast Php Framework ]
     // +----------------------------------------------------------------------
-    // | Copyright (c) 2016~2018 http://zframework.fastrun.cn All rights reserved.
+    // | Copyright (c) 2016~2018 http://z_framework.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
     // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
     // +----------------------------------------------------------------------
@@ -11,15 +10,14 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
+    namespace Zero\Config;
     
-    namespace Zero;
-    
-    use Zero\Config\Load;
-    
-    class Bootstrap
+    class Load
     {
-        public function run($config)
+        protected $configParams;
+        
+        public function __construct($config)
         {
-            return true;
+            $this->configParams = $config;
         }
     }

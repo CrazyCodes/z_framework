@@ -1,9 +1,8 @@
 <?php
     // +----------------------------------------------------------------------
-    // | z-framework
-    // | is program start bootstrap
+    // | XSHOP [ 重新定义二次开发 ]
     // +----------------------------------------------------------------------
-    // | Copyright (c) 2016~2018 http://zframework.fastrun.cn All rights reserved.
+    // | Copyright (c) 2016~2018 http://xshop.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
     // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
     // +----------------------------------------------------------------------
@@ -11,15 +10,12 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    
     namespace Zero;
     
-    use Zero\Config\Load;
-    
-    class Bootstrap
+    class Zero
     {
-        public function run($config)
+        public static function __callStatic($name, $arguments)
         {
-            return true;
+            var_dump($arguments, $name);
         }
     }

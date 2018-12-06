@@ -1,15 +1,16 @@
 <?php
     
-    namespace Zero;
+    namespace Zero\Tests;
     
     use PHPUnit\Framework\TestCase;
+    use Zero\Bootstrap;
     
     class BootstrapTest extends TestCase
     {
-        public function app()
+        public function testNewBootstrap()
         {
             $bootstrap = new Bootstrap();
             
-            $bootstrap->run();
+            $this->assertEquals(true, $bootstrap->run());
         }
     }
