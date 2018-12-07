@@ -119,7 +119,11 @@
             if ($this->verify($methods) == false) {
                 return false;
             }
-            
+    
+            if ($methods != $_SERVER["REQUEST_METHOD"]) {
+                return false;
+            }
+    
             return $this->routes->add($this->createRoute($methods, $uri, $action));
         }
         

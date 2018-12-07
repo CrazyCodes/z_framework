@@ -16,8 +16,6 @@
     
     class RouteCollection
     {
-        protected static $requestParams;
-        
         /**
          * @param $callFile
          *
@@ -25,7 +23,7 @@
          * @return bool
          * @throws \Exception
          */
-        protected function breakUpString($callFile): bool
+        protected function breakUpString($callFile)
         {
             $explode = explode('@', $callFile);
             
@@ -56,7 +54,7 @@
         public function link($action)
         {
             $actionParams = $this->breakUpString($action);
-            
+
             return (new Content())->instantiate($actionParams);
         }
     }

@@ -18,13 +18,14 @@
         {
             try {
                 $reflectionClass = new \ReflectionClass('Zero\\Tests\\Example\\App\\Controllers\\' . $params[0]);
-    
-                $newInstance     = $reflectionClass->newInstance();
-    
+                
+                $newInstance = $reflectionClass->newInstance();
+                
                 return call_user_func([
                     $newInstance,
                     $params[1],
                 ], []);
+                
             } catch (\ReflectionException $e) {
                 throw new \Exception($e->getMessage(), 404);
             }
