@@ -10,29 +10,23 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero\Routes;
+    namespace Zero\Routing;
     
-    use Zero\Container\Content;
-    
-    class Route extends Router implements RouteInterface
+    final class RouteModel
     {
-        public function Get($url, $callFile)
-        {
-            try {
-                parent::isRequestMethod("GET");
-                
-                if (is_callable($callFile)) {
-                    return $callFile();
-                }
-                
-                parent::breakUpString($callFile);
-                
-                return (new Content())->instantiate(self::$requestParams);
-                
-            } catch (\Exception $e) {
-                throw new \Exception($e->getMessage(), 404);
-            }
-        }
+        /**
+         * @var route method
+         */
+        public $method;
         
+        /**
+         * @var route uri
+         */
+        public $uri;
         
+        /**
+         * @var route action
+         */
+        public $action;
     }
+    

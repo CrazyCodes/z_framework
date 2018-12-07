@@ -10,28 +10,14 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero\Routes;
+    namespace Zero\Routing;
     
-    class Router
+    use Zero\Container\Content;
+    
+    class RouteCollection
     {
         protected static $requestParams;
         
-        /**
-         * @param string $method
-         *
-         * @content 判断请求方式
-         * @return bool
-         * @throws \Exception
-         */
-        protected static function isRequestMethod(string $method): bool
-        {
-            if ($_SERVER["REQUEST_METHOD"] != $method) {
-                throw new \Exception("请求无效");
-            }
-            
-            return true;
-        }
-    
         /**
          * @param $callFile
          *
@@ -39,18 +25,38 @@
          * @return bool
          * @throws \Exception
          */
-        protected static function breakUpString($callFile): bool
+        protected function breakUpString($callFile): bool
         {
             $explode = explode('@', $callFile);
             
-            if (count($explode) > 2) {
-                throw new \Exception("Invalid format Controller@Action", 404);
+            return $explode;
+        }
+    
+        /**
+         * @param RouteModel $model
+         *
+         * @return callable|mixed|route
+         * @throws \Exception
+         */
+        public function add(RouteModel $model)
+        {
+            if (is_callable($model->action)) {
+                return $model->action;
             }
             
-            static::$requestParams = $explode;
-            
-            return true;
+            return $this->link($model->action);
         }
         
-        
+        /**
+         * @param $action
+         *
+         * @return mixed
+         * @throws \Exception
+         */
+        public function link($action)
+        {
+            $actionParams = $this->breakUpString($action);
+            
+            return (new Content())->instantiate($actionParams);
+        }
     }

@@ -3,8 +3,9 @@
     namespace Zero\Tests;
     
     use PHPUnit\Framework\TestCase;
-    use Zero\Routes\Route;
-    
+    use Zero\Routing\Route;
+    use Zero\Routing\Router;
+
     class RouteTest extends TestCase
     {
         public function testGetAnonymityRequest()
@@ -37,5 +38,10 @@
             }
             
             
+        }
+        
+        public static function testGetRoute()
+        {
+            Route::get('111','2222');
         }
     }
