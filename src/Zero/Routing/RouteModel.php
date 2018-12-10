@@ -20,11 +20,6 @@
         public $method;
         
         /**
-         * @var route uri
-         */
-        public $uri;
-        
-        /**
          * @var route action
          */
         public $action;

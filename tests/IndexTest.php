@@ -1,9 +1,8 @@
 <?php
     // +----------------------------------------------------------------------
-    // | z-framework
-    // | is program start bootstrap
+    // | Z Framework [ The Fast Php Framework ]
     // +----------------------------------------------------------------------
-    // | Copyright (c) 2016~2018 http://zframework.fastrun.cn All rights reserved.
+    // | Copyright (c) 2016~2018 http://z_framework.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
     // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
     // +----------------------------------------------------------------------
@@ -12,25 +11,17 @@
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
     
-    namespace Zero;
+    namespace Zero\Tests;
     
-    class Bootstrap
+    use PHPUnit\Framework\TestCase;
+    
+    class IndexTest extends TestCase
     {
-        protected static $dirPath;
-        
-        public static function run(ZeroInterface $zero, $dirPath)
+        public function testIndex()
         {
-            self::$dirPath = $dirPath;
-            self::requireConfig();
-    
-            // todo include config files
-            $zero->load();
             
-           
-        }
-        
-        public static function requireConfig()
-        {
-            require_once self::$dirPath . "/../config/route.php";
+            $_SERVER["url"] = "user/profile";
+            include_once "example/public/index.php";
+            
         }
     }

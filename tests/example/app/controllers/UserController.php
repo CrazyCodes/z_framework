@@ -16,7 +16,7 @@
     {
         public function profile()
         {
-            return true;
+           var_dump(1);
         }
         
         public function create()

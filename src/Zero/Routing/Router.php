@@ -111,35 +111,28 @@
          * @param $uri
          * @param $action
          *
-         * @return bool|\stdClass
-         * @throws \Exception
+         * @return bool|callable|mixed|route
          */
         public function addRoute($methods, $uri, $action)
         {
             if ($this->verify($methods) == false) {
                 return false;
             }
-    
-            if ($methods != $_SERVER["REQUEST_METHOD"]) {
-                return false;
-            }
-    
-            return $this->routes->add($this->createRoute($methods, $uri, $action));
+            
+            return $this->routes->add($uri, $this->createRoute($methods, $action));
         }
         
         
         /**
          * @param $method
-         * @param $uri
          * @param $action
          *
          * @return null
          */
-        public function createRoute($method, $uri, $action)
+        public function createRoute($method, $action)
         {
             $template         = new RouteModel;
             $template->method = $method;
-            $template->uri    = $uri;
             $template->action = $action;
             
             return $template;

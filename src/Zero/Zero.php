@@ -12,10 +12,29 @@
     // +----------------------------------------------------------------------
     namespace Zero;
     
-    class Zero
+    use Zero\Http\Response;
+    use Zero\Routing\RouteCollection;
+    
+    class Zero implements ZeroInterface
     {
-        public static function __callStatic($name, $arguments)
+        protected $requestUrl;
+        
+        public function __construct()
         {
-            var_dump($arguments, $name);
+            $this->requestUrl = $_SERVER["url"];
+        }
+        
+        public function send()
+        {
+            return new Response();
+        }
+        
+        public function load()
+        {
+            if (isset($_SERVER['routes'][$this->requestUrl])) {
+                return (new RouteCollection())->link($_SERVER['routes'][$this->requestUrl]->action);
+            } else {
+                header("404");
+            }
         }
     }

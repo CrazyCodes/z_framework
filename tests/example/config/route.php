@@ -1,9 +1,8 @@
 <?php
     // +----------------------------------------------------------------------
-    // | z-framework
-    // | is program start bootstrap
+    // | Z Framework [ The Fast Php Framework ]
     // +----------------------------------------------------------------------
-    // | Copyright (c) 2016~2018 http://zframework.fastrun.cn All rights reserved.
+    // | Copyright (c) 2016~2018 http://z_framework.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
     // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
     // +----------------------------------------------------------------------
@@ -11,26 +10,5 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    
-    namespace Zero;
-    
-    class Bootstrap
-    {
-        protected static $dirPath;
-        
-        public static function run(ZeroInterface $zero, $dirPath)
-        {
-            self::$dirPath = $dirPath;
-            self::requireConfig();
-    
-            // todo include config files
-            $zero->load();
-            
-           
-        }
-        
-        public static function requireConfig()
-        {
-            require_once self::$dirPath . "/../config/route.php";
-        }
-    }
+    \Zero\Routing\Route::get('user/profile', 'UserController@profile');
+    \Zero\Routing\Route::post('user/register', 'UserController@register');

@@ -17,6 +17,11 @@
     class RouteCollection
     {
         /**
+         * @var array
+         */
+        protected $routes = [];
+        
+        /**
          * @param $callFile
          *
          * @content 获得参数
@@ -29,21 +34,25 @@
             
             return $explode;
         }
-    
+        
         /**
+         * @param            $uri
          * @param RouteModel $model
          *
          * @return callable|mixed|route
-         * @throws \Exception
          */
-        public function add(RouteModel $model)
+        public function add($uri, RouteModel $model)
         {
-            if (is_callable($model->action)) {
-                return $model->action;
+            if (empty($this->routes[$uri])) {
+                $this->routes[$uri]      = $model;
+                $_SERVER["routes"][$uri] = $this->routes[$uri];
             }
-            
-            return $this->link($model->action);
+
+//
+//            return $this->link($model->action);
         }
+        
+       
         
         /**
          * @param $action
@@ -54,7 +63,9 @@
         public function link($action)
         {
             $actionParams = $this->breakUpString($action);
-
+            
             return (new Content())->run($actionParams);
         }
+        
+        
     }
