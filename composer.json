@@ -1,5 +1,27 @@
 {
-  "name": "z framework",
+  "name": "crazycodes/zframework",
+  "description": "The Zero Framework.",
+  "keywords": [
+    "framework",
+    "zframework"
+  ],
+  "license": "MIT",
+  "homepage": "https://zframework.fastrun.cn",
+  "support": {
+    "issues": "https://github.com/CrazyCodes/z_framework/issues",
+    "source": "https://github.com/CrazyCodes/z_framework"
+  },
+  "authors": [
+    {
+      "name": "CrazyCodes",
+      "email": "crazycodes@fastrun.cn"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3",
+    "ext-mbstring": "*",
+    "ext-openssl": "*"
+  },
   "require-dev": {
     "phpunit/phpunit": "^7.0",
     "guzzlehttp/guzzle": "~6.0"
@@ -13,5 +35,6 @@
     "psr-4": {
       "Zero\\Tests\\": "tests/"
     }
-  }
+  },
+  "minimum-stability": "dev"
 }
