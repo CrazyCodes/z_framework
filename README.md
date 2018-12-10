@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://resources.blog.fastrun.cn/wp-content/uploads/2018/12/zero_logo.png"></a></p>
+<p align="center"><a href="https://blog.fastrun.cn" target="_blank"><img src="https://resources.blog.fastrun.cn/wp-content/uploads/2018/12/zero_logo.png"></a></p>
 
 
 
