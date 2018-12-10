@@ -14,21 +14,15 @@
     
     class Content
     {
-        public function instantiate($params)
+        public function run($params)
         {
-            try {
-                $reflectionClass = new \ReflectionClass('Zero\\Tests\\Example\\App\\Controllers\\' . $params[0]);
-                
-                $newInstance = $reflectionClass->newInstance();
-                
-                return call_user_func([
-                    $newInstance,
-                    $params[1],
-                ], []);
-                
-            } catch (\ReflectionException $e) {
-                throw new \Exception($e->getMessage(), 404);
-            }
+            $reflectionClass = new \ReflectionClass('Zero\\Tests\\Example\\App\\Controllers\\' . $params[0]);
+            
+            $newInstance = $reflectionClass->newInstance();
+            
+            return call_user_func([
+                $newInstance,
+                $params[1],
+            ], []);
         }
-        
     }

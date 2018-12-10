@@ -10,51 +10,47 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero\Routing;
+    namespace Zero\Container;
     
-    use Zero\Container\Content;
-    
-    class RouteCollection
+    class Container
     {
         /**
-         * @param $callFile
-         *
-         * @content 获得参数
-         * @return bool
-         * @throws \Exception
+         * @var $binds
          */
-        protected function breakUpString($callFile)
+        protected $binds;
+    
+        /**
+         * @var $instances
+         */
+        protected $instances;
+    
+        /**
+         * @param $abstract
+         * @param $concrete
+         */
+        public function bind($abstract, $concrete)
         {
-            $explode = explode('@', $callFile);
-            
-            return $explode;
+            if ($concrete instanceof Closure) {
+                $this->binds[$abstract] = $concrete;
+            } else {
+                $this->instances[$abstract] = $concrete;
+            }
         }
     
         /**
-         * @param RouteModel $model
-         *
-         * @return callable|mixed|route
-         * @throws \Exception
-         */
-        public function add(RouteModel $model)
-        {
-            if (is_callable($model->action)) {
-                return $model->action;
-            }
-            
-            return $this->link($model->action);
-        }
-        
-        /**
-         * @param $action
+         * @param       $abstract
+         * @param array $parameters
          *
          * @return mixed
-         * @throws \Exception
          */
-        public function link($action)
+        public function make($abstract, $parameters = [])
         {
-            $actionParams = $this->breakUpString($action);
-
-            return (new Content())->run($actionParams);
+            if (isset($this->instances[$abstract])) {
+                return $this->instances[$abstract];
+            }
+            
+            array_unshift($parameters, $this);
+            
+            return call_user_func_array($this->binds[$abstract], $parameters);
         }
     }

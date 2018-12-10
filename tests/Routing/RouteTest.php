@@ -10,3 +10,31 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
+    namespace Zero\Tests\Routing;
+    
+    use PHPUnit\Framework\TestCase;
+    use Zero\Routing\Route;
+    
+    class RouteTest extends TestCase
+    {
+        public function testGetRequest()
+        {
+            $_SERVER["REQUEST_METHOD"] = "GET";
+            
+            $result = Route::get('user/profile', 'UserController@profile');
+            
+            $this->assertTrue($result);
+        }
+        
+        public function testPostRequest()
+        {
+            $_SERVER["REQUEST_METHOD"] = "POST";
+            
+            $_POST["username"] = "CrazyCodes";
+            $_POST["password"] = "123456";
+            
+            $result = Route::post('user/create', 'UserController@create');
+            
+            $this->assertEquals($_POST, $result);
+        }
+    }

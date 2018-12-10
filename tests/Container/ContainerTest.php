@@ -10,17 +10,15 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero\Tests\Example\App\Controllers;
+    namespace Zero\Tests;
     
-    class UserController
+    use PHPUnit\Framework\TestCase;
+    use Zero\Container\Container;
+    
+    class ContainerTest extends TestCase
     {
-        public function profile()
+        public function testBind()
         {
-            return true;
-        }
         
-        public function create()
-        {
-            return $_POST;
         }
     }

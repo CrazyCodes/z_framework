@@ -10,51 +10,52 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero\Routing;
+    namespace Zero\Http;
     
-    use Zero\Container\Content;
-    
-    class RouteCollection
+    class Request
     {
-        /**
-         * @param $callFile
-         *
-         * @content 获得参数
-         * @return bool
-         * @throws \Exception
-         */
-        protected function breakUpString($callFile)
+        protected $requestBody;
+        
+        public function __construct()
         {
-            $explode = explode('@', $callFile);
-            
-            return $explode;
-        }
-    
-        /**
-         * @param RouteModel $model
-         *
-         * @return callable|mixed|route
-         * @throws \Exception
-         */
-        public function add(RouteModel $model)
-        {
-            if (is_callable($model->action)) {
-                return $model->action;
-            }
-            
-            return $this->link($model->action);
+            $this->requestBody = $_REQUEST;
         }
         
         /**
-         * @param $action
+         * @param $param
          *
          * @return mixed
-         * @throws \Exception
          */
-        public function link($action)
+        public function input($param)
         {
-            $actionParams = $this->breakUpString($action);
-
-            return (new Content())->run($actionParams);
+            return $this->requestBody[$param];
+        }
+        
+        /**
+         * @return mixed
+         */
+        public function all()
+        {
+            return $this->requestBody;
+        }
+        
+        /**
+         * @param null $param
+         *
+         * @return mixed
+         */
+        public function get($param = null)
+        {
+            return isset($_GET[$param]) ? $_GET[$param] : $_GET;
+        }
+        
+        /**
+         * @param null $param
+         *
+         * @return mixed
+         */
+        public function post($param = null)
+        {
+            return isset($_POST[$param]) ? $_POST[$param] : $_POST;
         }
     }
