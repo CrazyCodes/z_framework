@@ -1,18 +1,16 @@
 <p align="center"><a href="https://blog.fastrun.cn" target="_blank"><img src="https://resources.blog.fastrun.cn/wp-content/uploads/2018/12/zero_logo.png"></a></p>
 
+## About Zero
 
 
-## 关于zero
+## Learning Zero
 
 
-## 学习zero
+## Contributing
 
 
-## 贡献
+## Code of Conduct
 
 
-## 编码标准
-
-
-## 许可证
-
+## License
+The Zero framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
