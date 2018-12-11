@@ -2,6 +2,7 @@
 <p align="center">
 <a href="https://travis-ci.org/CrazyCodes/z_framework"><img src="https://travis-ci.com/CrazyCodes/z_framework.svg?branch=master" alt="Build Status"></a>
 </p>
+
 ## About Zero
 > Note: This is a development version. Do not use it in a production environment
 
