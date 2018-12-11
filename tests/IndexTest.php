@@ -30,10 +30,10 @@
         /**
          * @content Test entry file
          */
-        public function testPublicIndex()
-        {
-            $this->expectOutputString("true");
-            
-            include_once "example/public/index.php";
-        }
+//        public function testPublicIndex()
+//        {
+//            $this->expectOutputString("true");
+//
+//            include_once "example/public/index.php";
+//        }
     }
