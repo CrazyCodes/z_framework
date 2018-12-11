@@ -1,7 +1,6 @@
 <?php
     // +----------------------------------------------------------------------
-    // | z-framework
-    // | is program start bootstrap
+    // | Entry startup file -> run method
     // +----------------------------------------------------------------------
     // | Copyright (c) 2016~2018 http://zframework.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
@@ -14,22 +13,33 @@
     
     namespace Zero;
     
+    /**
+     * Class Bootstrap
+     * @package Zero
+     */
     class Bootstrap
     {
+        /**
+         * @var $dirPath
+         */
         protected static $dirPath;
         
+        /**
+         * @param ZeroInterface $zero
+         * @param               $dirPath
+         */
         public static function run(ZeroInterface $zero, $dirPath)
         {
             self::$dirPath = $dirPath;
-            self::requireConfig();
-    
-            // todo include config files
-            $zero->load();
+            self::requireRouter();
             
-           
+            $zero->load();
         }
         
-        public static function requireConfig()
+        /**
+         * @content reference routing file
+         */
+        public static function requireRouter()
         {
             require_once self::$dirPath . "/../config/route.php";
         }

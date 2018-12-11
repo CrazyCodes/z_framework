@@ -10,15 +10,12 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero\Tests;
+    namespace Zero\Tests\Example\App\Controllers;
     
-    use PHPUnit\Framework\TestCase;
-    use Zero\Container\Container;
-    
-    class ContainerTest extends TestCase
+    class IndexController
     {
-        public function testBind()
+        public function index()
         {
-        
+            echo "true";
         }
     }

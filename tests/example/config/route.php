@@ -12,3 +12,4 @@
     // +----------------------------------------------------------------------
     \Zero\Routing\Route::get('user/profile', 'UserController@profile');
     \Zero\Routing\Route::post('user/register', 'UserController@register');
+    \Zero\Routing\Route::get('/', 'IndexController@index');

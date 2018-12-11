@@ -1,6 +1,6 @@
 <?php
     // +----------------------------------------------------------------------
-    // | Z Framework [ The Fast Php Framework ]
+    // | The routing process
     // +----------------------------------------------------------------------
     // | Copyright (c) 2016~2018 http://z_framework.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
@@ -14,21 +14,19 @@
     
     use Zero\Container\Content;
     
+    /**
+     * Class RouteCollection
+     * @package Zero\Routing
+     */
     class RouteCollection
     {
         /**
-         * @var array
-         */
-        protected $routes = [];
-        
-        /**
          * @param $callFile
          *
-         * @content 获得参数
          * @return bool
          * @throws \Exception
          */
-        protected function breakUpString($callFile)
+        public function breakUpString($callFile)
         {
             $explode = explode('@', $callFile);
             
@@ -38,21 +36,13 @@
         /**
          * @param            $uri
          * @param RouteModel $model
-         *
-         * @return callable|mixed|route
          */
         public function add($uri, RouteModel $model)
         {
-            if (empty($this->routes[$uri])) {
-                $this->routes[$uri]      = $model;
-                $_SERVER["routes"][$uri] = $this->routes[$uri];
+            if (empty($_SERVER["routes"][$uri])) {
+                $_SERVER["routes"][$uri] = $model;
             }
-
-//
-//            return $this->link($model->action);
         }
-        
-       
         
         /**
          * @param $action

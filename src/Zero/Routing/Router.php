@@ -18,7 +18,7 @@
         /**
          * @var array
          */
-        protected static $requestMethod = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'];
+        public static $requestMethod = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'];
         
         /**
          * @var RouteCollection
