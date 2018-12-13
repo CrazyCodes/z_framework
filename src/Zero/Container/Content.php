@@ -16,7 +16,7 @@
     {
         public function run($params)
         {
-            $reflectionClass = new \ReflectionClass('Zero\Tests\Example\App\Controllers\\' . $params[0]);
+            $reflectionClass = new \ReflectionClass('App\\Controllers\\' . $params[0]);
             
             $newInstance = $reflectionClass->newInstance();
             

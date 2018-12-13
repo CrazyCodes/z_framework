@@ -12,50 +12,32 @@
     // +----------------------------------------------------------------------
     namespace Zero\Http;
     
-    class Request
+    use Zero\Routing\RouteCollection;
+
+    trait Request
     {
         protected $requestBody;
         
+        protected $requestUrl;
+        
         public function __construct()
         {
-            $this->requestBody = $_REQUEST;
+            $this->requestUrl = $_SERVER["REQUEST_URI"];
         }
         
-        /**
-         * @param $param
-         *
-         * @return mixed
-         */
-        public function input($param)
+        public function send()
         {
-            return $this->requestBody[$param];
+            return new Response();
         }
         
-        /**
-         * @return mixed
-         */
-        public function all()
+        public function load()
         {
-            return $this->requestBody;
+            if (isset($_SERVER['routes'][$this->requestUrl])) {
+                return (new RouteCollection())->link($_SERVER['routes'][$this->requestUrl]->action);
+            } else {
+                header("404");
+            }
         }
         
-        /**
-         * @param null $param
-         *
-         * @return mixed
-         */
-        public function get($param = null)
-        {
-            return isset($_GET[$param]) ? $_GET[$param] : $_GET;
-        }
         
-        /**
-         * @param null $param
-         *
-         * @return mixed
-         */
-        public function post($param = null)
-        {
-            return isset($_POST[$param]) ? $_POST[$param] : $_POST;
-        }
     }

@@ -41,6 +41,6 @@
          */
         public static function requireRouter()
         {
-            require_once self::$dirPath . "/../config/route.php";
+            require_once self::$dirPath . "/../routes/web.php";
         }
     }

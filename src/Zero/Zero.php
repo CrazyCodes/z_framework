@@ -1,6 +1,6 @@
 <?php
     // +----------------------------------------------------------------------
-    // | Z Framework [ The Fast Php Framework ]
+    // | Z Framework Core file
     // +----------------------------------------------------------------------
     // | Copyright (c) 2016~2018 http://xshop.fastrun.cn All rights reserved.
     // +----------------------------------------------------------------------
@@ -12,29 +12,13 @@
     // +----------------------------------------------------------------------
     namespace Zero;
     
-    use Zero\Http\Response;
-    use Zero\Routing\RouteCollection;
-    
+    use Zero\Http\Request;
+
+    /**
+     * Class Zero
+     * @package Zero
+     */
     class Zero implements ZeroInterface
     {
-        protected $requestUrl;
-        
-        public function __construct()
-        {
-            $this->requestUrl = $_SERVER["url"];
-        }
-        
-        public function send()
-        {
-            return new Response();
-        }
-        
-        public function load()
-        {
-            if (isset($_SERVER['routes'][$this->requestUrl])) {
-                return (new RouteCollection())->link($_SERVER['routes'][$this->requestUrl]->action);
-            } else {
-                header("404");
-            }
-        }
+        use Request;
     }

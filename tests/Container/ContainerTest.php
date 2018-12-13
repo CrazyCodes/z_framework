@@ -10,10 +10,35 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero;
+    namespace Zero\Tests\Container;
     
-    trait Controller
+    use PHPUnit\Framework\TestCase;
+    use Zero\Container\Container;
+    
+    class SuperMan
     {
+        public $app;
         
+        public function __construct($app)
+        {
+            $this->app = $app;
+        }
     }
     
+    class ContainerTest extends TestCase
+    {
+        /**
+         * @content Instantiate an anonymous
+         */
+        public function testBindClass()
+        {
+            $container = new Container();
+            $container->bind('Super', function ($app) {
+                return new SuperMan($app);
+            });
+            
+            $app = $container->make('Super', [true]);
+            
+            $this->assertTrue($app->app);
+        }
+    }

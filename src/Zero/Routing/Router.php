@@ -31,7 +31,6 @@
         public function __construct()
         {
             $this->routes = new RouteCollection;
-            
         }
         
         /**
@@ -98,6 +97,17 @@
          * @param      $uri
          * @param null $action
          *
+         * @return bool|callable|mixed|route
+         */
+        public function any($uri, $action = null)
+        {
+            return $this->addRoute("ANY", $uri, $action);
+        }
+        
+        /**
+         * @param      $uri
+         * @param null $action
+         *
          * @return mixed
          * @throws \Exception
          */
@@ -147,5 +157,4 @@
         {
             return in_array($methods, static::$requestMethod);
         }
-        
     }

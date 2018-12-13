@@ -18,25 +18,25 @@
          * @var $binds
          */
         protected $binds;
-    
+        
         /**
          * @var $instances
          */
         protected $instances;
-    
+        
         /**
          * @param $abstract
          * @param $concrete
          */
         public function bind($abstract, $concrete)
         {
-            if ($concrete instanceof Closure) {
+            if ($concrete instanceof \Closure) {
                 $this->binds[$abstract] = $concrete;
             } else {
                 $this->instances[$abstract] = $concrete;
             }
         }
-    
+        
         /**
          * @param       $abstract
          * @param array $parameters
@@ -48,8 +48,6 @@
             if (isset($this->instances[$abstract])) {
                 return $this->instances[$abstract];
             }
-            
-            array_unshift($parameters, $this);
             
             return call_user_func_array($this->binds[$abstract], $parameters);
         }
