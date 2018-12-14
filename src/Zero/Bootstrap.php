@@ -62,7 +62,7 @@
             foreach (Finder::findFiles(
                 "*.php"
             )->in($configDirectory) as $key => $value) {
-                require_once "{$key}";
+                $GLOBALS['configs'][$key] = require_once "{$key}";
             }
         }
         
