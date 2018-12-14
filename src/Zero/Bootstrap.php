@@ -13,6 +13,8 @@
     
     namespace Zero;
     
+    use Nette\Utils\Finder;
+    
     /**
      * Class Bootstrap
      * @package Zero
@@ -20,27 +22,76 @@
     class Bootstrap
     {
         /**
-         * @var $dirPath
+         * @param $configs
+         * @param $modules
+         * @param $globals
          */
-        protected static $dirPath;
+        public static function run($configs, $modules, $globals)
+        {
+            self::setGlobalVars('configs', $configs);
+            self::setGlobalVars('modules', $modules);
+            self::setGlobalVars('globals', $globals);
+            self::requireRouteFiles();
+            self::requireConfigFiles();
+        }
+        
         
         /**
-         * @param ZeroInterface $zero
-         * @param               $dirPath
+         * require Route Directory Files
          */
-        public static function run(ZeroInterface $zero, $dirPath)
+        private static function requireRouteFiles()
         {
-            self::$dirPath = $dirPath;
-            self::requireRouter();
+            $routeDirectory = self::getGlobalVars('globals')['dirname']
+                . self::getGlobalVars('configs')->routeDirectory;
             
-            $zero->load();
+            foreach (Finder::findFiles(
+                "*.php"
+            )->in($routeDirectory) as $key => $value) {
+                require_once "{$key}";
+            }
         }
         
         /**
-         * @content reference routing file
+         * require Config Directory Files
          */
-        public static function requireRouter()
+        private static function requireConfigFiles()
         {
-            require_once self::$dirPath . "/../routes/web.php";
+            $configDirectory = self::getGlobalVars('globals')['dirname']
+                . self::getGlobalVars('configs')->configDirectory;
+            
+            foreach (Finder::findFiles(
+                "*.php"
+            )->in($configDirectory) as $key => $value) {
+                require_once "{$key}";
+            }
+        }
+        
+        /**
+         * @param string $keyName
+         * @param        $maps
+         */
+        private static function setGlobalVars(string $keyName, $maps)
+        {
+            $GLOBALS[$keyName] = $maps;
+        }
+        
+        /**
+         * @param string ...$keyName
+         *
+         * @return array|mixed
+         */
+        public static function getGlobalVars(string ...$keyName)
+        {
+            $maps = [];
+            
+            if (count($keyName) == 1) {
+                return $GLOBALS[$keyName[0]];
+            }
+            
+            array_map(function ($key) use (&$maps) {
+                $maps[$key] = $GLOBALS[$key];
+            }, $keyName);
+            
+            return $maps;
         }
     }

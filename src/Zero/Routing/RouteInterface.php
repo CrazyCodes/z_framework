@@ -51,6 +51,4 @@
          * @return mixed
          */
         public function options($uri, $action = null);
-        
-        
     }

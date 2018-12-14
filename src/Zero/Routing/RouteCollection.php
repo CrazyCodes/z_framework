@@ -42,6 +42,7 @@
             if (empty($_SERVER["routes"][$uri])) {
                 $_SERVER["routes"][$uri] = $model;
             }
+            
         }
         
         /**

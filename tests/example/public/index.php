@@ -11,6 +11,8 @@
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
     
+    require_once "../../../vendor/autoload.php";
+    
     /**
      * Bootstrap Zero to start his core content
      */
@@ -30,16 +32,25 @@
      * @param $globals
      * Load the global variables you need into them, and you can call them at any time throughout the life cycle
      */
-        new class
+        new class extends Zero\AnonymityPsr\_Abstract implements \Zero\AnonymityPsr\_Interface
             /**
-             * @var $routeDirectory  The directory name of the route
-             * @var $configDirectory The name of the directory where the configuration file resides
+             * @var $routeDirectory   The directory name of the route
+             * @var $configDirectory  The name of the directory where the configuration file resides
              * @var $serviceNamespace Select the namespace to which the route maps to a directory
              */
         {
-            protected $routeDirectory = "route";
-            protected $configDirectory = "config";
-            protected $serviceNamespace = "App\\Controllers\\";
+            public $routeDirectory = "/../route";
+            public $configDirectory = "/../config";
+            public $serviceNamespace = "App\\Controllers\\";
+    
+            /**
+             *  You can set some predefined configurations or functions within the constructor
+             */
+            public function __construct()
+            {
+                date_default_timezone_set("Asia/Shanghai");
+                error_reporting(E_ALL);
+            }
         },
         /**
          * @module Route Routing module
@@ -56,13 +67,13 @@
          */
         [
             'dirname' => dirname(__FILE__),
-        ],
-    
-        /**
-         * Get the request entity class
-         */
-        $request = new Zero\Zero
+        ]
     );
+    
+    /**
+     * Get the request entity class
+     */
+    $request = new Zero\Zero;
     
     /**
      * The HTTP request is received by the send method,

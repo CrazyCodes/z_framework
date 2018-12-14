@@ -10,34 +10,9 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero\Http;
+    namespace Zero\AnonymityPsr;
     
-    use Zero\Routing\RouteCollection;
-
-    trait Request
+    interface _Interface
     {
-        protected $requestBody;
-        
-        protected $requestUrl;
-        
-        public function __construct()
-        {
-//            $this->requestUrl = $_SERVER["REQUEST_URI"];
-        }
-        
-        public function send()
-        {
-            return new Response();
-        }
-        
-        public function load()
-        {
-            if (isset($_SERVER['routes'][$this->requestUrl])) {
-                return (new RouteCollection())->link($_SERVER['routes'][$this->requestUrl]->action);
-            } else {
-                header("404");
-            }
-        }
-        
-        
+        function __construct();
     }
