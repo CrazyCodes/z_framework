@@ -34,23 +34,45 @@
             /**
              * @var $routeDirectory  The directory name of the route
              * @var $configDirectory The name of the directory where the configuration file resides
+             * @var $serviceNamespace Select the namespace to which the route maps to a directory
              */
         {
             protected $routeDirectory = "route";
             protected $configDirectory = "config";
+            protected $serviceNamespace = "App\\Controllers\\";
         },
+        /**
+         * @module Route Routing module
+         * @module Database Database operation module
+         * @module View Html View
+         */
         [
             'Route',
             'Database',
             'View',
         ],
+        /**
+         * @global dirname Project root directory
+         */
         [
             'dirname' => dirname(__FILE__),
         ],
-        
+    
+        /**
+         * Get the request entity class
+         */
         $request = new Zero\Zero
     );
     
+    /**
+     * The HTTP request is received by the send method,
+     * which is processed and filtered by the request class.
+     * After the pure HTTP request data is finally obtained,
+     * the service code is finally executed by routing the $serviceNamespace member variable to find its method
+     */
     $response = $request->send();
     
+    /**
+     * Process the returned data of the service, or return it as required by json,jsonp, XML,print, etc
+     */
     $response->end();
