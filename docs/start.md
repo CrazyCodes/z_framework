@@ -7,3 +7,10 @@ learn -> 使用文档
 
 project -> 架构文档
 
+# 生命周期
+graph LR;  
+　　A-->B;    
+　　A-->C;  
+　　B-->D;  
+　　C-->D;  
+
