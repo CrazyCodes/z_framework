@@ -16,6 +16,6 @@
     {
         public function index()
         {
-            echo "true";
+            return true;
         }
     }

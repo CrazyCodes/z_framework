@@ -11,7 +11,7 @@
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
     namespace Zero\Routing;
-
+    
     /**
      * Class Route
      * @package Zero\Routing

@@ -12,17 +12,37 @@
     // +----------------------------------------------------------------------
     namespace Zero\Container;
     
+    use ReflectionClass;
+    
+    /**
+     * Class Content
+     * @package Zero\Container
+     */
     class Content
     {
-        public function run($params)
+        /**
+         * @param $serviceParam
+         *
+         * @return mixed
+         * @throws \ReflectionException
+         */
+        public function run($serviceParam)
         {
-            $reflectionClass = new \ReflectionClass('App\\Controllers\\' . $params[0]);
+            $obj = $this->newInstance($serviceParam[0]);
+            // todo response
+            return call_user_func([$obj, $serviceParam[1]], []);
+        }
+        
+        /**
+         * @param $serviceFile
+         *
+         * @return object
+         * @throws \ReflectionException
+         */
+        public function newInstance($serviceFile)
+        {
+            $class = new ReflectionClass($GLOBALS['configs']->serviceNamespace . $serviceFile);
             
-            $newInstance = $reflectionClass->newInstance();
-            
-            return call_user_func([
-                $newInstance,
-                $params[1],
-            ], []);
+            return $class->newInstance();
         }
     }

@@ -14,8 +14,17 @@
     
     class Response
     {
+        protected $response;
+        
+        public function __construct($response)
+        {
+            $this->response = $response;
+        }
+        
         public function end()
         {
-            // todo unset all
+            if (isset($this->response)) {
+                echo $this->response;
+            }
         }
     }

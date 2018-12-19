@@ -58,11 +58,10 @@
         {
             $configDirectory = self::getGlobalVars('globals')['dirname']
                 . self::getGlobalVars('configs')->configDirectory;
-            
             foreach (Finder::findFiles(
                 "*.php"
             )->in($configDirectory) as $key => $value) {
-                $GLOBALS['configs'][$key] = require_once "{$key}";
+                $GLOBALS['configs']->{$key} = require_once "{$key}";
             }
         }
         
@@ -76,7 +75,7 @@
         }
         
         /**
-         * @param string ...$keyName
+         * @param string[] $keyName
          *
          * @return array|mixed
          */

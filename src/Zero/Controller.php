@@ -12,7 +12,7 @@
     // +----------------------------------------------------------------------
     namespace Zero;
     
-    trait Controller
+    class Controller
     {
         
     }

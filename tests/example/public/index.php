@@ -12,7 +12,6 @@
     // +----------------------------------------------------------------------
     
     require_once "../../../vendor/autoload.php";
-    
     /**
      * Bootstrap Zero to start his core content
      */
@@ -41,8 +40,8 @@
         {
             public $routeDirectory = "/../route";
             public $configDirectory = "/../config";
-            public $serviceNamespace = "App\\Controllers\\";
-    
+            public $serviceNamespace = "Zero\Tests\Example\App\Controllers\\";
+            
             /**
              *  You can set some predefined configurations or functions within the constructor
              */

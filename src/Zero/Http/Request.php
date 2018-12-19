@@ -13,30 +13,31 @@
     namespace Zero\Http;
     
     use Zero\Routing\RouteCollection;
-
+    
     trait Request
     {
         protected $requestBody;
         
         protected $requestUrl;
         
+        protected $responseBody;
+        
         public function __construct()
         {
-//            $this->requestUrl = $_SERVER["REQUEST_URI"];
+            $this->load();
         }
         
         public function send()
         {
-            return new Response();
+            return new Response($this->responseBody);
         }
         
         public function load()
         {
-            if (isset($_SERVER['routes'][$this->requestUrl])) {
-                return (new RouteCollection())->link($_SERVER['routes'][$this->requestUrl]->action);
-            } else {
-                header("404");
-            }
+            $this->responseBody = (new RouteCollection())->link($_SERVER['routes'][$_SERVER['REQUEST_URI']]->action);
+            
+            
+            return $this->send();
         }
         
         
