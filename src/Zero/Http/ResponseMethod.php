@@ -10,11 +10,28 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    if (!function_exists('response')) {
-        function response()
+    namespace Zero\Http;
+    
+    class ResponseMethod
+    {
+        public function json()
         {
-            return new \Zero\Http\ResponseMethod();
+            
+            return $this;
+        }
+        
+        public function file()
+        {
+        
+        }
+        
+        public function download()
+        {
+        
+        }
+        
+        public function header()
+        {
+        
         }
     }
-   
-    
