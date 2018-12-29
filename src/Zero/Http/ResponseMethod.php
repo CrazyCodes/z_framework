@@ -11,27 +11,27 @@
     // | Github: LoyaltyLu <https://github.com/LoyaltyLu>
     // +----------------------------------------------------------------------
     namespace Zero\Http;
-    
+
     class ResponseMethod
     {
-        public function json()
+        public function json($data = [])
         {
-            
-            return $this;
+            header('content-type:application/json;charset=utf-8');
+            return json_encode((object)$data,JSON_UNESCAPED_UNICODE);
         }
-        
+
         public function file()
         {
-        
+
         }
-        
+
         public function download()
         {
-        
+
         }
-        
+
         public function header()
         {
-        
+
         }
     }

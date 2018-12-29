@@ -11,11 +11,14 @@
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
     namespace Zero\Tests\Example\App\Controllers;
-    
     class IndexController
     {
         public function index()
         {
-            return true;
+            $data=[
+                'code'=>200,
+                'data'=>[1,2]
+            ];
+            return response()->json($data);
         }
     }
