@@ -19,6 +19,7 @@
                 'code'=>200,
                 'data'=>[1,2]
             ];
+            return response()->download('./1.txt','1.txt');
             return response()->json($data);
         }
     }

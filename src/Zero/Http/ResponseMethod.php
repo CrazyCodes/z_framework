@@ -25,9 +25,23 @@
 
         }
 
-        public function download()
+        public function download($fileUrl,$fileName)
         {
-
+            $fileName = $fileName ? $fileName :basename($fileName);
+            header("Content-type: application/octet-stream");
+            $ua = $_SERVER["HTTP_USER_AGENT"];
+            $encoded_filename = rawurldecode($fileName);
+            if(preg_match("/MSIE/", $ua)){
+                header('Content-Disposition: attachment; filename="' . $encoded_filename . '"');
+            }elseif (preg_match("/Firefox/", $ua)){
+                header("Content-Disposition: attachment; filename*=\"utf8''" . $fileName . '"');
+            }else{
+                header('Content-Disposition: attachment; filename="' . $fileName . '"');
+            }
+            $file_size = getFileSize($fileUrl);
+            header("Content-Length: " . $file_size);
+            readfile($fileUrl);
+            exit();
         }
 
         public function header()
