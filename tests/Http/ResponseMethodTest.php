@@ -6,14 +6,13 @@
     // +----------------------------------------------------------------------
     // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
     // +----------------------------------------------------------------------
-    // | Author: 张吉凯 <919342864@qq.com>
+    // | Author: 鲁忠 <979126035@qq.com>
     // +----------------------------------------------------------------------
-    // | Github: CrazyCodes <https://github.com/CrazyCodes>
+    // | Github: LoyaltyLu <https://github.com/LoyaltyLu>
     // +----------------------------------------------------------------------
     namespace Zero\Tests;
     
     use PHPUnit\Framework\TestCase;
-    use Zero\Http\ResponseMethod;
     
     class ResponseMethodTest extends TestCase
     {
@@ -25,9 +24,9 @@
             if (!file_exists($filename)) {
                 touch($filename);
             }
-            
-            $responseMethod = new ResponseMethod();
-            $responseMethod->download($filename, "ResponseMethodTestFileDownload.txt");
+
+
+            response()->download($filename, "ResponseMethodTestFileDownload.txt");
             
             unlink($filename);
             

@@ -27,6 +27,13 @@
 
         public function download($fileUrl,$fileName)
         {
+            if(check_url($fileUrl)){
+                $file_size = getFileSize($fileUrl);
+            }else{
+                if(!is_file($fileUrl)) return false;
+                $file_size = filesize($fileUrl);
+            }
+            if(!$file_size) return false;
             $fileName = $fileName ? $fileName :basename($fileName);
             header("Content-type: application/octet-stream");
             $ua = $_SERVER["HTTP_USER_AGENT"];
@@ -38,10 +45,8 @@
             }else{
                 header('Content-Disposition: attachment; filename="' . $fileName . '"');
             }
-            $file_size = getFileSize($fileUrl);
             header("Content-Length: " . $file_size);
             readfile($fileUrl);
-            exit();
         }
 
         public function header()
