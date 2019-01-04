@@ -10,11 +10,6 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero;
-    
-    interface ZeroInterface
-    {
-        public function send();
-        
-        public function load();
-    }
+    return [
+        'RouteCollection' => \Zero\Routing\RouteCollection::class,
+    ];
