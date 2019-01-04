@@ -12,33 +12,7 @@
     // +----------------------------------------------------------------------
     namespace Zero\Http;
     
-    use Zero\Routing\RouteCollection;
-    
-    trait Request
+    class Request
     {
-        protected $requestBody;
-        
-        protected $requestUrl;
-        
-        protected $responseBody;
-        
-        public function __construct()
-        {
-            $this->load();
-        }
-        
-        public function send()
-        {
-            return new Response($this->responseBody);
-        }
-        
-        public function load()
-        {
-            $this->responseBody = (new RouteCollection())->link($_SERVER['routes'][$_SERVER['REQUEST_URI']]->action);
-            
-            
-            return $this->send();
-        }
-        
-        
+    
     }
