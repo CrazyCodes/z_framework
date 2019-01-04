@@ -10,7 +10,6 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    
-    require_once "../../../vendor/autoload.php";
-    
-    include_once "../../../src/Zero/Entrance.php";
+    return [
+        'RouteCollection' => \Zero\Routing\RouteCollection::class,
+    ];

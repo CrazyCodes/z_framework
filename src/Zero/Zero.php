@@ -12,13 +12,40 @@
     // +----------------------------------------------------------------------
     namespace Zero;
     
+    use Zero\Container\Container;
     use Zero\Http\Request;
-
+    use Zero\Routing\RouteCollection;
+    
     /**
      * Class Zero
      * @package Zero
      */
-    class Zero implements ZeroInterface
+    class Zero extends Request implements ZeroInterface
     {
-        use Request;
+        public $container;
+        
+        protected $responseBody;
+        
+        public function __construct()
+        {
+            $configCollection = include "./Container/config.php";
+            
+            $this->container = new Container();
+            
+            foreach ($configCollection as $name => $class) {
+                $this->container->bind($name, function () use ($class) {
+                    return new $class;
+                });
+            }
+            
+            $this->responseBody = $this->container->make('RouteCollection')
+                ->link($_SERVER['routes'][$_SERVER['REQUEST_URI']]->action);
+        }
+        
+        public function send()
+        {
+            return new Response($this->responseBody);
+        }
+        
+        
     }

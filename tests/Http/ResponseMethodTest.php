@@ -10,11 +10,30 @@
     // +----------------------------------------------------------------------
     // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
-    namespace Zero;
+    namespace Zero\Tests;
     
-    interface ZeroInterface
+    use PHPUnit\Framework\TestCase;
+    use Zero\Http\ResponseMethod;
+    
+    class ResponseMethodTest extends TestCase
     {
-        public function send();
+        public function testDownload()
+        {
+            $filename         = "ResponseMethodTestFile.txt";
+            $filenameDownload = "ResponseMethodTestFileDownload.txt";
+            
+            if (!file_exists($filename)) {
+                touch($filename);
+            }
+            
+            $responseMethod = new ResponseMethod();
+            $responseMethod->download($filename, "ResponseMethodTestFileDownload.txt");
+            
+            unlink($filename);
+            
+            $this->assertTrue(file_exists($filenameDownload));
+        }
         
-        public function load();
     }
+    
+    
