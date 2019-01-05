@@ -6,31 +6,34 @@
     // +----------------------------------------------------------------------
     // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
     // +----------------------------------------------------------------------
-    // | Author: 鲁忠 <979126035@qq.com>
+    // | Author: 张吉凯 <919342864@qq.com>
     // +----------------------------------------------------------------------
-    // | Github: LoyaltyLu <https://github.com/LoyaltyLu>
+    // | Github: CrazyCodes <https://github.com/CrazyCodes>
     // +----------------------------------------------------------------------
     namespace Zero\Tests;
     
     use PHPUnit\Framework\TestCase;
+    use Zero\Http\ResponseMethod;
     
     class ResponseMethodTest extends TestCase
     {
         public function testDownload()
         {
-            $filename         = "ResponseMethodTestFile.txt";
+            $filename         = "1.png";
             $filenameDownload = "ResponseMethodTestFileDownload.txt";
             
             if (!file_exists($filename)) {
                 touch($filename);
             }
 
-
-            response()->download($filename, "ResponseMethodTestFileDownload.txt");
+            $responseMethod = new ResponseMethod();
+            $responseMethod->download($filename, "ResponseMethodTestFileDownload.txt");
             
             unlink($filename);
             
             $this->assertTrue(file_exists($filenameDownload));
+
+            unlink($filenameDownload);
         }
         
     }
