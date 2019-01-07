@@ -20,9 +20,19 @@
             return json_encode((object)$data,JSON_UNESCAPED_UNICODE);
         }
 
-        public function file()
+        public function file($imageUrl)
         {
-
+            $img_info = getimagesize($imageUrl);
+            $imgExt = image_type_to_extension($img_info[2], false);
+            $fun = "imagecreatefrom{$imgExt}";
+            $imgInfo = $fun($imageUrl);
+            $mime = image_type_to_mime_type($imageUrl);
+            header('Content-Type:'.$mime);
+            $quality = 100;
+            if($imgExt == 'png') $quality = 9;
+            $getImgInfo = "image{$imgExt}";
+            $getImgInfo($imgInfo, null, $quality);
+            imagedestroy($imgInfo);
         }
 
         public function download($fileUrl,$fileName)
