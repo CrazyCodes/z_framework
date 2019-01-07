@@ -19,7 +19,7 @@
     {
         public function testDownload()
         {
-            $filename         = "1.png";
+            $filename         = "1.txt";
             $filenameDownload = "ResponseMethodTestFileDownload.txt";
             
             if (!file_exists($filename)) {
