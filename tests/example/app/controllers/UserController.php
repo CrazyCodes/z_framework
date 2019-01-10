@@ -12,6 +12,8 @@
     // +----------------------------------------------------------------------
     namespace Zero\Tests\Example\App\Controllers;
     
+    use Zero\HttpFoundation\Request;
+
     class UserController
     {
         public function profile()
